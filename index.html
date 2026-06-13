@@ -11,9 +11,12 @@
 
 </head>
 <body>
+    <div id="loader">
+    <h1>MOHAMED MANAS</h1>
+</div>
 
 <nav>
-    <h2>MANAS</h2>
+    <h2>MANHAS DIGITAL</h2>
 
     <ul>
         <li><a href="#about">About</a></li>
@@ -28,24 +31,27 @@
     <h1>Mohamed Manas</h1>
 
     <p>Web Developer & Creative Designer</p>
+  
+    <h2 class="typing"></h2>
 
     <a href="#projects" class="btn">View Projects</a>
 <div class="hero-image">
-    <img src="./images/profile.jpg" alt="Mohamed Manas">
+    <img src="images/profile.jpg" alt="Mohamed Manas">
 </div>
 </section>
 
-<section id="about">
+<section id="about" class="reveal">
 
     <h2>About Me</h2>
 
-    <p>
-        I am a passionate web developer and creative designer who loves creating modern and responsive websites.
-    </p>
-
+  <p>
+I'm Mohamed Manas, a passionate UI/UX Designer and Frontend Developer from Tamilnadu.
+I enjoy creating user-friendly interfaces, responsive websites, and modern digital experiences.
+Currently seeking internship and entry-level opportunities to grow my skills and contribute to impactful projects.
+</p>
 </section>
 
-<section id="skills">
+<section id="skills" class="reveal">
 
     <h2>Skills</h2>
 
@@ -59,38 +65,181 @@
     </div>
 
 </section>
+<section id="terminal" class="reveal">
+    <h2>Developer Console</h2>
 
-<section id="projects">
+    <div class="terminal-box">
+        <p><span>> whoami</span></p>
+        <p>Mohamed Manas</p>
 
-    <h2>Projects</h2>
+        <p><span>> skills</span></p>
+        <p>HTML, CSS, JavaScript, Git & GitHub</p>
+
+        <p><span>> status</span></p>
+        <p>Available for Opportunities</p>
+
+        <p><span>> portfolio_version</span></p>
+        <p>v2.0</p>
+    </div>
+</section>
+
+<section id="projects" class="reveal">
+    <h2>My Projects</h2>
 
     <div class="cards">
 
-        <div class="card">
-            Landing Page Project
+        <div class="card" onclick="showProject('landing')">
+            <h3>Landing Page</h3>
+            <p>Modern Business Website</p>
         </div>
+ <div class="card" onclick="showProject('portfolio')">
+    <h3>Portfolio Website</h3>
+    <p>Personal Portfolio showcasing skills and projects.</p>
+</div>
+<div class="card" onclick="showProject('poster')">
+    <h3>Poster Design Project</h3>
 
-        <div class="card">
-            Poster Design Project
-        </div>
+    <p>Creative poster designs for events, branding and social media.</p>
 
-        <div class="card">
-            Portfolio Website
-        </div>
-
+</div>
     </div>
+</section>
+<div id="projectModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeProject()">&times;</span>
+
+        <h2 id="projectTitle"></h2>
+
+        <img id="projectImage" src="" alt="Project Demo">
+
+        <p id="projectDescription"></p>
+    </div>
+</div>
+
 
 </section>
 
-<section id="contact">
+<section id="contact" class="reveal">
 
     <h2>Contact Me</h2>
 
-    <p>Email : yourmail@gmail.com</p>
+    <p>Email : <a href="mail to:mhdmanaskhan205@gmail.com">
+        mhdmanaskhan2005@gmail.com
+        </a></p>
 
-</section>
+    <div class="social-links">
+        <a href=https://www.linkedin.com/in/mohamed-manas-4789073ab" target="_blank">
+                LinkedIn
+</a>
+    </div>
+</section><center>
+    <div class="stats">
+    <div>
+        <h3>10+</h3>
+        <p>Projects</p>
+    </div>
 
+    <div>
+        <h3>5+</h3>
+        <p>Design Concepts</p>
+    </div>
+
+    <div>
+        <h3>100%</h3>
+        <p>Responsive</p>
+    </div></center>
+</div>
+
+        
 <script src="script.js"></script>
+<script>
+const texts = [
+    "Frontend Developer",
+    "UI/UX Designer",
+    "Creative Thinker"
+];
 
+let index = 0;
+
+function changeText() {
+    document.querySelector(".typing").textContent = texts[index];
+    index = (index + 1) % texts.length;
+}
+
+changeText();
+setInterval(changeText, 2000);
+</script>
+<script>
+window.addEventListener("scroll", () => {
+    const reveals = document.querySelectorAll(".reveal");
+
+    reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const revealTop = reveal.getBoundingClientRect().top;
+
+        if(revealTop < windowHeight - 100){
+            reveal.classList.add("active");
+        }
+    });
+});
+</script>
+<script>
+window.addEventListener("load", function () {
+    setTimeout(function () {
+        const loader = document.getElementById("loader");
+        if (loader) {
+            loader.style.display = "none";
+        }
+    }, 2000);
+});
+</script><script>
+window.addEventListener("load", function () {
+    setTimeout(function () {
+        const loader = document.getElementById("loader");
+        loader.classList.add("fade-out");
+
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 500);
+    }, 1500);
+});
+</script>
+<script>
+function showProject(project){
+
+    const modal = document.getElementById("projectModal");
+    const title = document.getElementById("projectTitle");
+    const image = document.getElementById("projectImage");
+    const desc = document.getElementById("projectDescription");
+
+    if(project === "landing"){
+        title.innerText = "Landing Page";
+        image.src = "./images/landing-project.png";
+        desc.innerText = "Responsive landing page for business websites.";
+    }
+
+    if(project === "portfolio"){
+        title.innerText = "Portfolio Website";
+        image.src = "./images/portofolio-project.png";
+        desc.innerText = "Personal portfolio built using HTML, CSS and JavaScript.";
+    }
+
+    if(project === "poster"){
+        title.innerText ="Poster Design Project";
+        image.src = "./images/poster-project.png";
+        desc.innerText = "Creative poster designs for events, branding and social media.";
+    }
+
+    modal.style.display = "block";
+}
+
+function closeProject(){
+    document.getElementById("projectModal").style.display = "none";
+}
+</script>
+<center>
+<footer>
+    <p>© 2026 Mohamed Manas. All Rights Reserved.</p>
+</footer></center>
 </body>
 </html>
